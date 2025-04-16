@@ -1,0 +1,70 @@
+<h1>Angular 19 tutorial</h1>
+<h1>Counter App</h1>
+<div style="text-align: center;">
+  <h3 class="count">{{count}}</h3>
+  <div>
+    <button (click)="handleCounter('minus')" class="btn bg-red">Decrement</button>
+    <button (click)="handleCounter('reset')" class="btn bg-blue">Reset</button>
+    <button (click)="handleCounter('plus')" class="btn bg-green">Increment</button>
+  </div>
+</div>
+<h1>Get and Set Input field value</h1>
+<input (input)="getUsername($event)" type="text" #userName placeholder="Enter user name">
+<br>
+<button (click)="setUsername()">Set username</button>
+<button (click)="getUserNameWTemplate(userName.value)">Get username</button>
+<h2>{{this.username}}</h2>
+<h1>If-else</h1>
+<button (click)="toggle()">Toggle</button>
+@if(display){
+<div style="background-color: green;width: 50px; height: 50px;">
+</div>
+}
+@else {
+<div style="background-color: orange;width: 50px; height: 50px;">
+</div>
+}
+<h1>Switch</h1>
+<button (click)="handleColor('red')">Handle color</button>
+@switch(color) {
+@case('red'){
+<h1 style="background-color: red;">Red color</h1>
+}
+@case('blue'){
+<h1 style="background-color: blue;">Blue color</h1>
+}
+@default{
+<h1 style="background-color: goldenrod;">Gold color</h1>
+}
+}
+<h1>For loop</h1>
+@for (user of users; track user) {
+<h2>{{user}}</h2>
+}
+@for (student of students; track student.name; let id=$index) {
+  <h2>
+    <span>{{id}}</span>
+    <span>{{student.name}}</span>
+    <span>{{student.age}}</span>
+    <button (click)="getName(student.name)">Get Name</button>
+  </h2>
+}
+<h1>Event</h1>
+<button (click)="handleEvent($event)">Click on button</button>
+<div (mouseenter)="handleEvent($event)" style="background-color: beige; height: 20px;width: 20px;">
+</div>
+<div (mouseleave)="handleEvent($event)" style="background-color: darkkhaki; height: 20px;width: 20px;">
+</div>
+<input (blur)="handleEvent($event)" (focus)="handleEvent($event)" (input)="handleEvent($event)" type="text" name="user">
+
+<h1>Signal</h1>
+<h3>{{a1}}</h3>
+<h3>{{a2()}}</h3>
+<button (click)="updateValue()">Update value</button>
+
+<h1>Types with Signal</h1>
+<button (click)="updateType()">Update Type and Value</button>
+
+<h1>Computed Signal</h1>
+<h3>{{a5()}}</h3>
+<button (click)="updateComp()">Update Computed Value</button>
