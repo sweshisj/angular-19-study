@@ -29,3 +29,8 @@
     padding: 10px;
     border-radius: 10px;
 }
+.task-list{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}

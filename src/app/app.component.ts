@@ -1,10 +1,12 @@
 import { Component, computed, effect, Signal, signal, WritableSignal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { LoginComponent } from "./login/login.component";
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, LoginComponent],
+  imports: [RouterOutlet, LoginComponent, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -50,7 +52,7 @@ export class AppComponent {
     this.color = val;
   }
 
-  users = ['Swe', 'Ruban', 'Django']
+  users = ['Swe', 'Ruban', 'Django', 'Dhyaan', 'Dheera']
   students = [{ name: 'Swe', age: 26 }, { name: 'Ruban', age: 28 }, { name: 'Django', age: 6 }]
 
   getName(name: string) {
@@ -66,13 +68,13 @@ export class AppComponent {
   a1 = 100;
   a2 = signal(100);
 
-  constructor() {
-    effect(() => {
-      console.log(this.a1)
-      console.log(this.a2())
-    }
-    )
-  }
+  // constructor() {
+  //   effect(() => {
+  //     console.log(this.a1)
+  //     console.log(this.a2())
+  //   }
+  //   )
+  // }
   updateValue() {
     this.a1 = 200;
     this.a2.set(200);
@@ -80,22 +82,50 @@ export class AppComponent {
 
   //types with signal
   a3 = signal<number | string>(10);
-  a4:WritableSignal<number|string|boolean> = signal(10)
-  
+  a4: WritableSignal<number | string | boolean> = signal(10)
+
   updateType() {
     this.a3.set("swe")
     this.a4.set("swesh")
-    this.a2.update(val=>val+1)
+    this.a2.update(val => val + 1)
   }
 
   //computed signal - read only
-  a5:Signal<number> = computed(()=>20)
-  num1=signal(10);
+  a5: Signal<number> = computed(() => 20)
+  num1 = signal(10);
   num2 = signal(30);
-  sum = computed(()=>this.num1()+this.num2())
+  sum = computed(() => this.num1() + this.num2())
   updateComp() {
     console.log(this.sum()) //40
     this.num1.set(100)
     console.log(this.sum())//130 ----in normal signal, it remains 40
   }
+
+  //effect
+  effectname = signal("sweshika")
+  constructor() {
+    effect(() => {
+
+    })
+  }
+
+  //two way binding
+  twdata: string = ""
+
+  //todo list
+  task = ""
+  taskList: { id: number, name: string }[] = []
+  addTask(){
+    this.taskList.push({id:this.taskList.length+1, name:this.task})
+    this.task = ""
+  }
+  deleteTask(id:number){
+    this.taskList = this.taskList.filter((item)=>item.id != id)
+  }
+
+  //dynamic styling
+  dynamicColor: string = "green"
+  dynamicFont: string = "30px"
+
+  
 }

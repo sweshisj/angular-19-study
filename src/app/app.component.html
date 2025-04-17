@@ -24,6 +24,9 @@
 <div style="background-color: orange;width: 50px; height: 50px;">
 </div>
 }
+<h1>ngif</h1>
+<h2 *ngIf="display">Display is true</h2>
+<h2 *ngIf="!display">Display is false</h2>
 <h1>Switch</h1>
 <button (click)="handleColor('red')">Handle color</button>
 @switch(color) {
@@ -37,18 +40,26 @@
 <h1 style="background-color: goldenrod;">Gold color</h1>
 }
 }
+<h1>ngswitch</h1>
+<div [ngSwitch]="color">
+  <h1 *ngSwitchCase="'blue'" style="background-color: blue;">Blue color</h1>
+  <h1 *ngSwitchCase="'red'" style="background-color: red;">Red color</h1>
+  <h1 *ngSwitchDefault>No color</h1>
+</div>
 <h1>For loop</h1>
 @for (user of users; track user) {
 <h2>{{user}}</h2>
 }
 @for (student of students; track student.name; let id=$index) {
-  <h2>
-    <span>{{id}}</span>
-    <span>{{student.name}}</span>
-    <span>{{student.age}}</span>
-    <button (click)="getName(student.name)">Get Name</button>
-  </h2>
+<h2>
+  <span>{{id}}</span>
+  <span>{{student.name}}</span>
+  <span>{{student.age}}</span>
+  <button (click)="getName(student.name)">Get Name</button>
+</h2>
 }
+<h1>ngfor</h1>
+<ul><li *ngFor="let s of students">{{s.name}}</li></ul>
 <h1>Event</h1>
 <button (click)="handleEvent($event)">Click on button</button>
 <div (mouseenter)="handleEvent($event)" style="background-color: beige; height: 20px;width: 20px;">
@@ -68,3 +79,38 @@
 <h1>Computed Signal</h1>
 <h3>{{a5()}}</h3>
 <button (click)="updateComp()">Update Computed Value</button>
+
+<h1>Effect</h1>
+<h3>{{effectname()}}</h3>
+<button (click)="effectname.set('Swe')">Update Effect Value</button>
+
+<h1>For loop contextual variables - default variables present in for loop</h1>
+@for(user of users; track user){
+@if($first || $last){
+<h3 style="background-color: bisque;">{{$index+1}} {{user}}</h3>
+} @else if($even) {
+<h3 style="background-color: darkolivegreen;">{{$index+1}} {{user}}</h3>
+} @else if($odd) {
+<h3 style="background-color: skyblue;">{{$index+1}} {{user}}</h3>
+} @else {
+<h3>{{$index+1}} {{user}}</h3>
+}
+}@empty() { <h4>No records found</h4>}
+
+<h1>Two way binding</h1>
+<input type="text" [(ngModel)]="twdata" placeholder="Enter name">
+<h3>{{twdata}}</h3>
+<hr>
+<h1>TO-DO LIST</h1>
+<input type="text" [(ngModel)]="task" placeholder="Enter task name">
+<button (click)="addTask()">Add task</button>
+
+@for(task of taskList;track task.id){
+  <ul class="task-list">
+    <li>{{task.id}}</li>
+    <li>{{task.name}}</li>
+    <li><button (click)="deleteTask(task.id)">Delete</button></li>
+  </ul>
+}
+
+<h1 [style.color]="dynamicColor" [style.fontSize]="dynamicFont">Dynamic styling</h1>
