@@ -1,10 +1,10 @@
 import { NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule, NgForm, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form',
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, FormsModule],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
 })
@@ -18,13 +18,17 @@ export class FormComponent {
 
   }
 
-  get name(){
+  get name() {
     return this.profileForm.get('name')
   }
-  get password(){
+  get password() {
     return this.profileForm.get('password')
   }
-  get email(){
+  get email() {
     return this.profileForm.get('email')
+  }
+  userData: NgForm | null = null
+  addUser(val: NgForm) {
+    this.userData = val
   }
 }
