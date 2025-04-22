@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,7 +8,9 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './user.component.css'
 })
 export class UserComponent {
-  name:string|null=""
+  @Input() user:string = "";
+  name:string|null="";
+  
   constructor(private route:ActivatedRoute){
 
   }

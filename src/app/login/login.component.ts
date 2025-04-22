@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
+  @Output() getData = new EventEmitter;
+  data = ["swe", "ruban"]
+  passData(){
+    this.getData.emit(this.data)
+  }
 }

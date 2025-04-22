@@ -1,5 +1,20 @@
 <h1>Angular 19 tutorial</h1>
 <h1><a routerLinkActive="active" routerLink="form">Forms</a></h1>
+<h2>pass data from child(login) to parent</h2>
+@for (d of data; track data) {
+  <div>
+    {{d}}
+  </div>
+  }
+<app-login (getData)="handleData($event)"></app-login>
+<!-- <app-user user="swe"></app-user> -->
+<h1>Reuse component</h1>
+@for (user of users; track user) {
+<div>
+  {{user}}
+  <app-user [user]="user"></app-user>
+</div>
+}
 <h1>Counter App</h1>
 <div style="text-align: center;">
   <h3 class="count">{{count}}</h3>
@@ -60,7 +75,9 @@
 </h2>
 }
 <h1>ngfor</h1>
-<ul><li *ngFor="let s of students">{{s.name}}</li></ul>
+<ul>
+  <li *ngFor="let s of students">{{s.name}}</li>
+</ul>
 <h1>Event</h1>
 <button (click)="handleEvent($event)">Click on button</button>
 <div (mouseenter)="handleEvent($event)" style="background-color: beige; height: 20px;width: 20px;">
@@ -107,11 +124,11 @@
 <button (click)="addTask()">Add task</button>
 
 @for(task of taskList;track task.id){
-  <ul class="task-list">
-    <li>{{task.id}}</li>
-    <li>{{task.name}}</li>
-    <li><button (click)="deleteTask(task.id)">Delete</button></li>
-  </ul>
+<ul class="task-list">
+  <li>{{task.id}}</li>
+  <li>{{task.name}}</li>
+  <li><button (click)="deleteTask(task.id)">Delete</button></li>
+</ul>
 }
 
 <h1 [style.color]="dynamicColor" [style.fontSize]="dynamicFont">Dynamic styling</h1>

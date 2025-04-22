@@ -2,10 +2,12 @@ import { Component, computed, effect, Signal, signal, WritableSignal } from '@an
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { UserComponent } from './user/user.component';
+import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UserComponent, LoginComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -126,5 +128,10 @@ export class AppComponent {
   dynamicColor: string = "green"
   dynamicFont: string = "30px"
 
-  
+  //child->parent
+  data:string[]|undefined;
+  handleData(d: any){
+    console.log(d)
+    this.data = d;
+  }
 }
