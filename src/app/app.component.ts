@@ -1,13 +1,14 @@
 import { Component, computed, effect, Signal, signal, WritableSignal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
+import { CommonModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } from '@angular/common';
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
+import { CurrencyConvertorPipe } from './pipe/currency-convertor.pipe';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UserComponent, LoginComponent],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UserComponent, LoginComponent, CommonModule, CurrencyConvertorPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
@@ -116,12 +117,12 @@ export class AppComponent {
   //todo list
   task = ""
   taskList: { id: number, name: string }[] = []
-  addTask(){
-    this.taskList.push({id:this.taskList.length+1, name:this.task})
+  addTask() {
+    this.taskList.push({ id: this.taskList.length + 1, name: this.task })
     this.task = ""
   }
-  deleteTask(id:number){
-    this.taskList = this.taskList.filter((item)=>item.id != id)
+  deleteTask(id: number) {
+    this.taskList = this.taskList.filter((item) => item.id != id)
   }
 
   //dynamic styling
@@ -129,9 +130,15 @@ export class AppComponent {
   dynamicFont: string = "30px"
 
   //child->parent
-  data:string[]|undefined;
-  handleData(d: any){
+  data: string[] | undefined;
+  handleData(d: any) {
     console.log(d)
     this.data = d;
   }
+
+  //pipe
+  lc = "sweshika"
+  uc = "SWESHIKA"
+  today = new Date();
+  amount = 10
 }

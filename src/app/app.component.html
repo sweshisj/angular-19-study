@@ -2,10 +2,10 @@
 <h1><a routerLinkActive="active" routerLink="form">Forms</a></h1>
 <h2>pass data from child(login) to parent</h2>
 @for (d of data; track data) {
-  <div>
-    {{d}}
-  </div>
-  }
+<div>
+  {{d}}
+</div>
+}
 <app-login (getData)="handleData($event)"></app-login>
 <!-- <app-user user="swe"></app-user> -->
 <h1>Reuse component</h1>
@@ -146,3 +146,17 @@
   </li>
 </ul>
 <router-outlet></router-outlet>
+
+<h1>Pipes</h1>
+<p>{{lc | uppercase}}</p>
+<p>{{lc | titlecase}}</p>
+<p>{{uc | lowercase}}</p>
+<p>{{today | date}}</p>
+<p>{{today | date:'fullDate'}}</p>
+<p>{{today | date:'hh:mm:ss'}}</p>
+<p>{{amount | currency:'INR'}}</p>
+<p>{{today | date:'fullDate'| uppercase}}</p>
+<h1>Custom Pipes</h1>
+<p>USD to INR {{amount | currencyConvertor}}</p>
+<p>YUAN to INR {{amount | currencyConvertor:12}}</p>
+<p>EUR to INR {{amount | currencyConvertor:98}}</p>
