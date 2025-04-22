@@ -5,10 +5,11 @@ import { CommonModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault } fr
 import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { CurrencyConvertorPipe } from './pipe/currency-convertor.pipe';
+import { LifeCycleComponent } from './life-cycle/life-cycle.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UserComponent, LoginComponent, CommonModule, CurrencyConvertorPipe],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, FormsModule, NgFor, NgIf, NgSwitch, NgSwitchCase, NgSwitchDefault, UserComponent, LoginComponent, CommonModule, CurrencyConvertorPipe, LifeCycleComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
