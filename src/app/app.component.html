@@ -160,6 +160,10 @@
 <p>USD to INR {{amount | currencyConvertor}}</p>
 <p>YUAN to INR {{amount | currencyConvertor:12}}</p>
 <p>EUR to INR {{amount | currencyConvertor:98}}</p>
+<h1>API Call Service</h1>
+@for(user of userData;track user){
+  <p>{{user.name}} {{user.age}} {{user.id}}</p>
+}
 <h1>Service</h1>
 @for(item of productData;track item){
   <p>{{item.name}} {{item.category}} {{item.price}}</p>
