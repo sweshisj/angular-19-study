@@ -151,17 +151,41 @@ export class AppComponent {
     category: string;
     price: string;
   }[] | undefined
-  listData:any;
-  userData:any
-  ngOnInit(){
+  listData: any;
+  userData: any
+  selectedUser:User|undefined;
+  ngOnInit() {
     this.productData = this.productService.getProduct()
-    this.productService.productList().subscribe((data:any)=> {
+    this.productService.productList().subscribe((data: any) => {
       console.log(data)
       this.listData = data.products
     })
-    this.usersService.getUsers().subscribe((data:User[])=>{
+    this.getUsers()
+  }
+  //POST
+  getUsers() {
+    this.usersService.getUsers().subscribe((data: User[]) => {
       console.log(data)
       this.userData = data
+    })
+  }
+  addUser(user: User) {
+    this.usersService.addUser(user).subscribe((data: User) => {
+      if (data) {
+        this.getUsers()
+      }
+    })
+  }
+  deleteUser(id: number) {
+    this.usersService.deleteUser(id).subscribe((data: User) => {
+      if (data) {
+        this.getUsers();
+      }
+    })
+  }
+  getSelectedUser(id:number){
+    this.usersService.getSelectedUser(id).subscribe((data:User)=>{
+      
     })
   }
 }

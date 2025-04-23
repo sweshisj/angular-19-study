@@ -161,16 +161,31 @@
 <p>YUAN to INR {{amount | currencyConvertor:12}}</p>
 <p>EUR to INR {{amount | currencyConvertor:98}}</p>
 <h1>API Call Service</h1>
-@for(user of userData;track user){
-  <p>{{user.name}} {{user.age}} {{user.id}}</p>
+<form #userForm="ngForm" (ngSubmit)="addUser(userForm.value)">
+  <input type="text" placeholder="Enter name" name="name" [ngModel]="selectedUser?.name">
+  <br>
+  <input type="text" placeholder="Enter age" name="age" [ngModel]="selectedUser?.age">
+  <br>
+  <input type="text" placeholder="Enter id" name="id" [ngModel]="selectedUser?.id">
+  <br>
+  @if(!selectedUser){
+  <button>Add user</button>
+  } @else {
+  <button>Update user</button>
+  }
+</form>
+@for(user of userData;track user.id){
+<p>{{user.name}} {{user.age}} {{user.id}}</p>
+<button (click)="deleteUser(user.id)">Delete user</button>
+<button (click)="getSelectedUser(user.id)">Update user</button>
 }
 <h1>Service</h1>
 @for(item of productData;track item){
-  <p>{{item.name}} {{item.category}} {{item.price}}</p>
+<p>{{item.name}} {{item.category}} {{item.price}}</p>
 }
 <div>
   @for(list of listData;track list){
-    <img src="{{list.thumbnail}}" alt="product image">
-    <p>{{list.title}} {{list.rating}} {{list.price}}</p>
+  <img src="{{list.thumbnail}}" alt="product image">
+  <p>{{list.title}} {{list.rating}} {{list.price}}</p>
   }
 </div>
