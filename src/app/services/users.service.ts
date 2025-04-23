@@ -23,4 +23,7 @@ export class UsersService {
   getSelectedUser(id:number):Observable<User>{
     return this.http.get<User>(this.url+"/"+id);
   }
+  updateUser(user:User):Observable<User>{
+    return this.http.put<User>(this.url+"/"+user.id,user);
+  }
 }
