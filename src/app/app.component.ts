@@ -6,6 +6,7 @@ import { UserComponent } from './user/user.component';
 import { LoginComponent } from './login/login.component';
 import { CurrencyConvertorPipe } from './pipe/currency-convertor.pipe';
 import { LifeCycleComponent } from './life-cycle/life-cycle.component';
+import { ProductService } from './services/product.service';
 
 @Component({
   selector: 'app-root',
@@ -106,7 +107,7 @@ export class AppComponent {
 
   //effect
   effectname = signal("sweshika")
-  constructor() {
+  constructor(private productService: ProductService) {
     effect(() => {
 
     })
@@ -142,4 +143,18 @@ export class AppComponent {
   uc = "SWESHIKA"
   today = new Date();
   amount = 10
+  //service
+  productData: {
+    name: string;
+    category: string;
+    price: string;
+  }[] | undefined
+  listData:any;
+  ngOnInit(){
+    this.productData = this.productService.getProduct()
+    this.productService.productList().subscribe((data:any)=> {
+      console.log(data)
+      this.listData = data.products
+    })
+  }
 }

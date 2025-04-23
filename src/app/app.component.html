@@ -160,4 +160,13 @@
 <p>USD to INR {{amount | currencyConvertor}}</p>
 <p>YUAN to INR {{amount | currencyConvertor:12}}</p>
 <p>EUR to INR {{amount | currencyConvertor:98}}</p>
-<h1>Life cycle hooks</h1>
+<h1>Service</h1>
+@for(item of productData;track item){
+  <p>{{item.name}} {{item.category}} {{item.price}}</p>
+}
+<div>
+  @for(list of listData;track list){
+    <img src="{{list.thumbnail}}" alt="product image">
+    <p>{{list.title}} {{list.rating}} {{list.price}}</p>
+  }
+</div>
